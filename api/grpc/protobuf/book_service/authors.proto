@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package book_service;
+
+option go_package = "github.com/hentan/internal_api_books/api/grpc/protobuf/book_service";
+
+/*
+    *Сервис для получения информации об авторах
+*/
+
+message Author {
+  int32 id = 1;
+  string name_author = 2;
+  string surname_author = 3;
+  string biography = 4;
+  string birthday = 5;
+}
