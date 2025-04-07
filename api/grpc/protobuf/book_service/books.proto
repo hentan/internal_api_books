@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package book_service;
+package books;
 
 option go_package = "github.com/hentan/internal_api_books/api/grpc/protobuf/book_service";
 
@@ -49,7 +49,11 @@ message CreateBookRequest {
 message UpdateBookRequest {
   int32 id = 1;
   string title = 2;
-  optional int32 author_id = 3;
-  optional int32 year = 4;
-  optional string isbn = 5;
+  int32 author_id = 3;
+  int32 year = 4;
+  string isbn = 5;
 }
+
+message StatusResponse { string message =1; }
+
+message CreateBookResponse { Book book =1; }
