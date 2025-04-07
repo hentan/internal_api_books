@@ -13,3 +13,8 @@ message AuthorAndBook {
   Author author = 1;
   Book book = 2;
 }
+
+message CombinedUpdateRequest {
+  UpdateBookRequest book_update =1;
+  UpdateAuthorRequest author_update =2;
+}
