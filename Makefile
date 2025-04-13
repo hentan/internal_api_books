@@ -8,26 +8,29 @@ install-go-deps:
 
 generate-go-book-service-api-proto:
 # комментарии для себя на будущее
-# mkdir -p src/go/pkg/grpc/book_service создали директорию для хранения сгенерированных файлов
-# proto_path api/grpc/protobuf/book_service указали путь к директории с исходниками .proto файлов
-# --go_out=src/go/pkg/grpc/book_service сгенерирует Go файлы для описанных типов данных и сообщений.
+# mkdir -p src/go/pkg/grpc/books создали директорию для хранения сгенерированных файлов
+# proto_path api/grpc/protobuf/books указали путь к директории с исходниками .proto файлов
+# --go_out=src/go/pkg/grpc/books сгенерирует Go файлы для описанных типов данных и сообщений.
 # --go_opt=paths=source_relative указали, что путь к исходникам будет относительно директории с исходниками
-# --go-grpc_out=src/go/pkg/grpc/book_service генерирует GRPC серверный и клиентский код для описанных типов данных и сообщений.
+# --go-grpc_out=src/go/pkg/grpc/books генерирует GRPC серверный и клиентский код для описанных типов данных и сообщений.
 # --plugin=protoc-gen-go=bin/protoc-gen-go указали пути до плагина protoc-gen-go
 # protoc-gen-go: основной генератор Go кода.
 # protoc-gen-go-grpc: генератор GRPC сервера и клиента.
 # protoc-gen-doc: генератор документации (не стандартный протобаф плагин).
-# --doc_out=api/grpc/protobuf/book_service генерирует документацию в формате markdown
-	mkdir -p src/go/pkg/grpc/book_service
-	GOBIN=$(LOCAL_BIN) protoc \
-  --proto_path api/grpc/protobuf/book_service \
-  --go_out=src/go/pkg/grpc/book_service \
-  --go_opt=paths=source_relative \
-  --go-grpc_out=src/go/pkg/grpc/book_service \
-  --go-grpc_opt=paths=source_relative \
-  --plugin=protoc-gen-go=bin/protoc-gen-go \
-  --plugin=protoc-gen-go-grpc=bin/protoc-gen-go-grpc \
-  --plugin=protoc-gen-doc=bin/protoc-gen-doc \
-  --doc_out=api/grpc/protobuf/book_service \
-  --doc_opt=markdown,README.md,source_relative \
-  api/grpc/protobuf/book_service/*.proto
+# --doc_out=api/grpc/protobuf/books генерирует документацию в формате markdown
+	mkdir -p api/grpc/protobuf/books api/grpc/protobuf/authors api/grpc/protobuf/combines
+
+	protoc \
+        -Iapi/grpc/protobuf \
+        --go_out=. \
+        --go_opt=paths=source_relative \
+        --go-grpc_out=. \
+        --go-grpc_opt=paths=source_relative \
+        --doc_out=api/grpc/protobuf \
+        --doc_opt=html,index.html \
+        --plugin=protoc-gen-go=bin/protoc-gen-go \
+        --plugin=protoc-gen-go-grpc=bin/protoc-gen-go-grpc \
+        --plugin=protoc-gen-doc=bin/protoc-gen-doc \
+        api/grpc/protobuf/authors/authors.proto \
+        api/grpc/protobuf/books/books.proto \
+        api/grpc/protobuf/combines/combine.proto

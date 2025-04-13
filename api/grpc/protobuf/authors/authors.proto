@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package authors;
 
-option go_package = "github.com/hentan/internal_api_Authors/api/grpc/protobuf/Author_service";
+option go_package = "github.com/hentan/internal_api_books/api/grpc/protobuf/authors";
+
+import "books/books.proto";
 
 /*
     *Сервис для получения информации об авторах
@@ -13,14 +15,12 @@ service AuthorService {
     * Метод для получения книг
     */
 
-    rpc GetAllAuthors(Empty) returns (AuthorList);
+    rpc GetAllAuthors(books.Empty) returns (AuthorList);
     rpc GetAuthorById(AuthorRequest) returns (Author);
     rpc CreateAuthor(CreateAuthorRequest) returns (CreateAuthorResponse);
     rpc UpdateAuthor(UpdateAuthorRequest) returns (StatusResponse);
     rpc DeleteAuthor(AuthorRequest) returns (StatusResponse);
 }
-
-message Empty {}
 
 message Author {
   int32 id =1;
