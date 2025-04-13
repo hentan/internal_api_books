@@ -4,7 +4,7 @@ package authors;
 
 option go_package = "github.com/hentan/internal_api_books/api/grpc/protobuf/authors";
 
-import "books/books.proto";
+import "internal_api_books/api/grpc/protobuf/books/books.proto";
 
 /*
     *Сервис для получения информации об авторах
