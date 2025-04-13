@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package authors;
 
-option go_package = "github.com/hentan/internal_api_books/api/grpc/protobuf/authors";
+option go_package = "github.com/hentan/internal_api_books/gen/go/authors";
 
-import "internal_api_books/api/grpc/protobuf/books/books.proto";
+import "books/books.proto";
 
 /*
     *Сервис для получения информации об авторах

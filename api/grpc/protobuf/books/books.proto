@@ -2,22 +2,22 @@ syntax = "proto3";
 
 package books;
 
-option go_package = "github.com/hentan/internal_api_books/api/grpc/protobuf/books";
+option go_package = "github.com/hentan/internal_api_books/gen/go/books";
 
 /*
     *Сервис для получения информации о книгах
 */
 
 service BookService {
-    /**
-    * Метод для получения книг
-    */
+  /**
+  * Метод для получения книг
+  */
 
-    rpc GetAllBooks(Empty) returns (BookList);
-    rpc GetBookById(BookRequest) returns (Book);
-    rpc CreateBook(CreateBookRequest) returns (CreateBookResponse);
-    rpc UpdateBook(UpdateBookRequest) returns (StatusResponse);
-    rpc DeleteBook(BookRequest) returns (StatusResponse);
+  rpc GetAllBooks(Empty) returns (BookList);
+  rpc GetBookById(BookRequest) returns (Book);
+  rpc CreateBook(CreateBookRequest) returns (CreateBookResponse);
+  rpc UpdateBook(UpdateBookRequest) returns (StatusResponse);
+  rpc DeleteBook(BookRequest) returns (StatusResponse);
 }
 
 message Empty {}

@@ -18,14 +18,15 @@ generate-go-book-service-api-proto:
 # protoc-gen-go-grpc: генератор GRPC сервера и клиента.
 # protoc-gen-doc: генератор документации (не стандартный протобаф плагин).
 # --doc_out=api/grpc/protobuf/books генерирует документацию в формате markdown
+generate-go-book-service-api-proto:
 	mkdir -p api/grpc/protobuf/books api/grpc/protobuf/authors api/grpc/protobuf/combines
 
 	protoc \
         -Iapi/grpc/protobuf \
         --go_out=. \
-        --go_opt=paths=source_relative \
+        --go_opt=module=github.com/hentan/internal_api_books \
         --go-grpc_out=. \
-        --go-grpc_opt=paths=source_relative \
+        --go-grpc_opt=module=github.com/hentan/internal_api_books \
         --doc_out=api/grpc/protobuf \
         --doc_opt=html,index.html \
         --plugin=protoc-gen-go=bin/protoc-gen-go \
