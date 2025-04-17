@@ -16,7 +16,6 @@ install-go-deps:
 # protoc-gen-go: основной генератор Go кода.
 # protoc-gen-go-grpc: генератор GRPC сервера и клиента.
 # protoc-gen-doc: генератор документации (не стандартный протобаф плагин).
-# --doc_out=api/grpc/protobuf/books генерирует документацию в формате markdown
 generate-go-book-service-api-proto:
 	mkdir -p gen/go
 
